@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import {Routes, Route} from 'react-router-dom'
+import Dashboard from './component/Dashboard/Dashboard'
+import DrugResistant from './component/DrugResistant/Dashboard'
+import AddDrugResistant from './component/DrugResistant/addDrugResistant'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <Routes>
+      <Route path='/' element={<Dashboard />} /> 
+      <Route path='/drugresistant' element={<DrugResistant />} /> 
+      <Route path='/adddrugresistant' element={<AddDrugResistant />} />
+    </Routes>
     </div>
   );
 }

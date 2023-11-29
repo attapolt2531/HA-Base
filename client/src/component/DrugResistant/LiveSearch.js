@@ -13,7 +13,7 @@ export default function LiveSearch() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost/api/PatientApi.php?q=${query}`);
+      const response = await fetch(`http://localhost:3002/livesearch/${query}`);
       const result = await response.json();
       console.log('API response:', result);
       setJsonResult(result);
@@ -28,7 +28,7 @@ export default function LiveSearch() {
     if (query) {
       const debounceTimer = setTimeout(() => {
         fetchData();
-      }, 500);
+      }, 100);
 
       return () => clearTimeout(debounceTimer);
     }

@@ -180,7 +180,7 @@ export default function AddDrugResistant() {
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>          
-                  <h3>ค้นหา</h3>
+                  <h3>ค้นหาข้อมูลผู้ป่วย</h3>
                   <LiveSearch />
                 
                 </Paper>

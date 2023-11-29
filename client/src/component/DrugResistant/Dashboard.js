@@ -196,7 +196,7 @@ export default function Dashboard() {
                   }}
                 >
                   <Deposits />
-                  <Link href='adddrugresistant' style={{display:'flex',justifyContent:'flex-end'}}>
+                  <Link href='searchdrugresistant' style={{display:'flex',justifyContent:'flex-end'}}>
                     <Fab color="secondary" aria-label="edit">
                       <AddIcon  />
                     </Fab>

@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 // import EditIcon from '@mui/icons-material/Edit';
+import DataForm from './dataForm'
 
 
 export default function LiveSearch() {
@@ -35,7 +36,7 @@ export default function LiveSearch() {
   
       return () => clearTimeout(debounceTimer);
     }
-  }, [query]);
+  });
   
 
   const handleAutocompleteChange = (event, value) => {
@@ -111,6 +112,8 @@ export default function LiveSearch() {
         <p>Selected HN: {selectedHn}</p>
         <br />
         <hr />
+        <DataForm selectedHn={selectedHn} />
+
       </Container>
     </React.Fragment>
   );

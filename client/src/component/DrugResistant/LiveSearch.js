@@ -6,6 +6,9 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 // import EditIcon from '@mui/icons-material/Edit';
 import DataForm from './dataForm'
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+
 
 
 export default function LiveSearch() {
@@ -112,7 +115,18 @@ export default function LiveSearch() {
         <p>Selected HN: {selectedHn}</p>
         <br />
         <hr />
-        <DataForm selectedHn={selectedHn} />
+        {selectedHn === '' ? (
+          <Paper sx={{ padding: 2, marginTop: 2 }}>
+          <Typography variant="h6" gutterBottom component="div">
+            ผลลัพธ์จากการค้นหาข้อมูล
+          </Typography>
+            <Typography>ไม่พบข้อมูล</Typography>
+            </Paper>
+        ):(
+          <DataForm selectedHn={selectedHn} />
+        )}
+        
+        
 
       </Container>
     </React.Fragment>

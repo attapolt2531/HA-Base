@@ -112,7 +112,7 @@ app.get("/getdata/:hn", async (req, res) => {
   const hn = req.params.hn
   try {
       connection.query("SET NAMES utf8mb4");
-      connection.query("SELECT CONCAT(patient.pname,patient.fname,' ',patient.lname) AS name,patient.hn,CONCAT(patient.addrpart,patient.moopart,thaiaddress.full_name) AS address FROM patient INNER JOIN thaiaddress ON thaiaddress.chwpart = patient.chwpart AND thaiaddress.amppart = patient.amppart AND thaiaddress.tmbpart = patient.tmbpart WHERE patient.hn = ?",
+      connection.query("SELECT CONCAT(patient.pname,patient.fname,' ',patient.lname) AS name,patient.hn,CONCAT(patient.addrpart,' หมู่',patient.moopart,' ',thaiaddress.full_name) AS address FROM patient INNER JOIN thaiaddress ON thaiaddress.chwpart = patient.chwpart AND thaiaddress.amppart = patient.amppart AND thaiaddress.tmbpart = patient.tmbpart WHERE patient.hn = ?",
           [hn],
           (err, result, fields) => {
               if (err) {
@@ -126,6 +126,28 @@ app.get("/getdata/:hn", async (req, res) => {
       return res.status(500).send();
   }
 });
+
+//Select Specimen
+app.get("/specimen", async (req, res) => {
+  try {
+      connection.query("SET NAMES utf8mb4");
+      const queryString = `SELECT
+      specimen_code,
+      specimen_name
+    FROM
+      lab_specimen_items`;
+      connection.query(queryString,(err,result,fields) => {
+          if (err) {
+              console.log("error");
+              return res.status(400).send();
+          }
+          res.status(200).json(result)
+      })
+  } catch (err) {
+      return res.status(400).send();
+  }
+});
+
 
 
 

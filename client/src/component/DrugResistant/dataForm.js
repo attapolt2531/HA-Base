@@ -2,6 +2,8 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
+import SpecimenList from './specimenList'
+import DatePicker from './datePicker'
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -63,6 +65,7 @@ export default function FlexDirection({selectedHn}) {
     }
     
     useEffect(() => {
+      if(selectedHn.length > 0)
         fetchDataForm(selectedHn)        
       },[selectedHn]);
 
@@ -98,9 +101,6 @@ export default function FlexDirection({selectedHn}) {
           borderRadius: 1,
         }}
       >
-        <Item>Item 1</Item>
-        <Item>Item 2</Item>
-        <Item>Item 3</Item>
       </Box>
       <Box
         sx={{
@@ -113,7 +113,8 @@ export default function FlexDirection({selectedHn}) {
           borderRadius: 1,
         }}
       >
-        <Item>Item 1</Item>
+        <SpecimenList />
+        <DatePicker />
         <Item>Item 2</Item>
         <Item>Item 3</Item>
       </Box>

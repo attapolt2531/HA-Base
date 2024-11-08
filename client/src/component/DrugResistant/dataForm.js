@@ -4,6 +4,12 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import SpecimenList from './specimenList'
 import DatePicker from './datePicker'
+import DxList from './dxList'
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import DrugList from './drugList'
+
+
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -11,10 +17,10 @@ function Item(props) {
     <Box
       sx={{
         p: 1,
-        m: 1,
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : 'grey.100'),
+        
+        // bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : 'grey.100'),
         color: (theme) => (theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800'),
-        border: '1px solid',
+        // border: '1px solid',
         borderColor: (theme) =>
           theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
         borderRadius: 2,
@@ -78,61 +84,95 @@ export default function FlexDirection({selectedHn}) {
           display: 'flex',
           flexDirection: 'row',
           p: 1,
-          m: 1,
+         
           bgcolor: 'background.paper',
           borderRadius: 1,
         }}
       >
         
-        <Item>hn : {row.hn}</Item>
-        <Item>ชื่อ : {row.name}</Item>
-        <Item>ที่อยู่ : {row.address}</Item>
-        
+
+        <Item>
+        <TextField
+          id="outlined-basic" 
+          label="hn" 
+          variant="outlined" 
+          defaultValue={row.hn} 
+          inputProps={{
+          readOnly: true,
+        }} 
+        />
+        </Item>
+        <Item style={{ flex: 2, minWidth: 0 }}>
+          <TextField
+          id="outlined-basic" 
+          label="ชื่อ" 
+          variant="outlined" 
+          defaultValue={row.name} 
+          inputProps={{
+          readOnly: true,
+        }}
+        sx={{ width: '100%' }} // เพิ่ม property sx เพื่อปรับความกว้างเป็น 100% 
+        />
+        </Item>
+        <Item style={{ flex: 2, minWidth: 0 }}>
+          <TextField
+            id="outlined-basic"
+            label="ที่อยู่"
+            variant="outlined"
+            defaultValue={row.address}
+            inputProps={{
+              readOnly: true,
+            }}
+            sx={{ width: '100%' }} // เพิ่ม property sx เพื่อปรับความกว้างเป็น 100%
+          />
+        </Item>
         
       </Box>
+           
       ))}
+
       <Box
+        
         sx={{
           display: 'flex',
-          flexDirection: 'row-reverse',
+          flexDirection: 'row',
           p: 1,
-          m: 1,
+          
           bgcolor: 'background.paper',
           borderRadius: 1,
-        }}
-      >
-      </Box>
+        }}>
+
+          <Item>
+            <DatePicker />
+          </Item>
+          
+
+        
+      </Box>    
       <Box
+        
         sx={{
           display: 'flex',
-          alignItems: 'flex-start',
-          flexDirection: 'column',
+          flexDirection: 'row',
           p: 1,
-          m: 1,
+          
           bgcolor: 'background.paper',
           borderRadius: 1,
-        }}
-      >
-        <SpecimenList />
-        <DatePicker />
-        <Item>Item 2</Item>
-        <Item>Item 3</Item>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column-reverse',
-          alignItems: 'flex-start',
-          p: 1,
-          m: 1,
-          bgcolor: 'background.paper',
-          borderRadius: 1,
-        }}
-      >
-        <Item>Item 1</Item>
-        <Item>Item 2</Item>
-        <Item>Item 3</Item>
-      </Box>
+        }}>
+
+
+          <Item>
+            <SpecimenList />
+          </Item>
+          <Item>
+            <DxList />
+          </Item>
+          <Item>
+            <DrugList />
+          </Item>
+        
+      </Box>    
+
     </div>
   );
 }

@@ -8,7 +8,7 @@ export default function BasicDatePicker() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DatePicker']}>
-        <DatePicker label="วันที่พบเชื้อ" />
+        <DatePicker label="วันที่พบเชื้อ"/>
       </DemoContainer>
     </LocalizationProvider>
   );

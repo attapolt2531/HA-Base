@@ -174,15 +174,11 @@ export default function AddDrugResistant() {
           <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
             
             <Grid container spacing={3}>
-              
-              
-              
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>          
                   <h3>ค้นหาข้อมูลผู้ป่วย</h3>
-                  <LiveSearch />
-                
+                  <LiveSearch />    
                 </Paper>
               </Grid>
             </Grid>

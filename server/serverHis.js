@@ -129,6 +129,7 @@ app.get("/getdata/:hn", async (req, res) => {
 
 //Select Specimen
 app.get("/specimen", async (req, res) => {
+  const text = req.params.text
   try {
       connection.query("SET NAMES utf8mb4");
       const queryString = `SELECT
@@ -148,10 +149,48 @@ app.get("/specimen", async (req, res) => {
   }
 });
 
+//Select DX
+app.get("/icd10/:text", async (req, res) => {
+  const text = req.params.text
+  try {
+      connection.query("SET NAMES utf8mb4");
+      const queryString = `SELECT code AS dxCode,name AS dxName FROM icd101 WHERE code LIKE ? OR name LIKE ?`;
+      connection.query(queryString,[`%${text}%`, `%${text}%`],(err,result,fields) => {
+          if (err) {
+              console.log("error");
+              return res.status(400).send();
+          }
+          res.status(200).json(result)
+      })
+  } catch (err) {
+      return res.status(400).send();
+  }
+});
 
 
-
-
+//Select Drug
+app.get("/phr/:text", async (req, res) => {
+  const text = req.params.text
+  try {
+      connection.query("SET NAMES utf8mb4");
+      const queryString = `SELECT
+      drugitems.icode,
+      drugitems.name AS drugname,
+      drugitems.units
+      FROM drugitems
+      WHERE drugitems.name LIKE ?
+       `;
+      connection.query(queryString,[`%${text}%`],(err,result,fields) => {
+          if (err) {
+              console.log("error");
+              return res.status(400).send();
+          }
+          res.status(200).json(result)
+      })
+  } catch (err) {
+      return res.status(400).send();
+  }
+});
 
 
 app.listen(3002,()=>console.log('Server Is running on port 3002'));
